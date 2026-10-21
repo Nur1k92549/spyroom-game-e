@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020"><title>SPYROOM — Шпион</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow glow-one"></div><div class="glow glow-two"></div>
+<header class="topbar"><a class="logo" href="#"><span class="logo-mark">✦</span> SPY<span>ROOM</span></a><span class="live-label"><i></i> MULTIPLAYER</span></header>
+<main class="wrap">
+<section id="home" class="screen active">
+ <div class="hero"><div class="kicker">ҚҰПИЯ ОЙЫН · 3–4 ОЙЫНШЫ</div><h1>Кімнің <em>шпион</em><br>екенін тап.</h1><p>Құпия сөзді сақта. Сұрақ қой. Күдік тудырма.</p>
+ <button id="startBtn" class="btn primary big">START GAME <b>↗</b></button>
+ <button id="joinScreenBtn" class="btn secondary big">КОДПЕН ҚОСЫЛУ <b>＋</b></button>
+ <div class="chips"><span>♙ 4 ойыншыға дейін</span><span>⌁ Телефонға ыңғайлы</span><span>♜ Ұпай кестесі</span></div></div>
+ <div class="hero-art"><div class="orbit o1"></div><div class="orbit o2"></div><div class="classified"><small>CLASSIFIED <i></i></small><div class="eye">◉</div><strong>IDENTITY<br><span>UNKNOWN</span></strong><footer>ACCESS LEVEL <b>01 / 04</b></footer></div><label class="float-tag">◉ ҚҰПИЯ РӨЛ</label></div>
+</section>
+<section id="setup" class="screen">
+ <button class="back" data-back>← Басты бет</button><div class="heading"><div class="kicker">01 / ОЙЫН ҚҰРУ</div><h2>Бөлмені <em>дайында.</em></h2><p>Ойыншылар қосылғаннан кейін категорияны бірге таңдайсыңдар.</p></div>
+ <div class="panel"><label class="field-label" for="hostName">Ойыншы атың</label><input id="hostName" maxlength="18" placeholder="Мысалы: Арлан"><button id="createBtn" class="btn primary full">БӨЛМЕ ҚҰРУ ↗</button><p class="muted">Бөлме коды автоматты түрде жасалады.</p></div>
+</section>
+<section id="join" class="screen">
+ <button class="back" data-back>← Басты бет</button><div class="heading"><div class="kicker">02 / ҚОСЫЛУ</div><h2>Кодты <em>енгіз.</em></h2><p>Досың жіберген бөлме кодын және өз атыңды жаз.</p></div>
+ <div class="panel"><label class="field-label" for="joinCode">Бөлме коды</label><input id="joinCode" class="code-entry" maxlength="6" placeholder="A7K9Q2" autocomplete="off"><label class="field-label" for="joinName">Ойыншы атың</label><input id="joinName" maxlength="18" placeholder="Мысалы: Дана"><button id="joinBtn" class="btn primary full">БӨЛМЕГЕ ҚОСЫЛУ ↗</button></div>
+</section>
+<section id="lobby" class="screen">
+ <div class="room-top"><div><div class="kicker">ОЙЫН БӨЛМЕСІ</div><h2>Room <em id="roomCodeLabel">------</em></h2></div><button id="copyCode" class="code-box">------ ⧉</button></div>
+ <div class="two-col"><div class="panel"><div class="panel-head"><div><strong>Ойыншылар</strong><small id="playerCount">0 / 4</small></div><span id="statusBadge" class="badge">КҮТУДЕ</span></div><div id="players" class="players"></div><button id="readyBtn" class="btn ready full">✓ ДАЙЫНБЫН</button><p id="lobbyHint" class="muted center">Барлығы дайын болғанда келесі кезең ашылады.</p></div>
+ <div class="panel"><div class="panel-head"><div><strong id="rightTitle">Ойын ережесі</strong><small id="rightSub">Бастауға дайындал</small></div></div><div id="rightContent" class="right-content"><div class="big-icon">◎</div><h3>Бір ғана шпион.</h3><p>Ойыншылар қосылсын, содан кейін категорияны таңдаңдар.</p></div></div></div>
+ <div id="scorePanel" class="panel score-panel"><div class="panel-head"><div><strong>🏆 Ұпай кестесі</strong><small>Барлық раундтың нәтижесі</small></div></div><div id="scores" class="scores"></div></div>
+</section>
+<section id="round" class="screen">
+ <div class="room-top"><div><div class="kicker" id="roundKicker">ҚҰПИЯ РАУНД</div><h2 id="roundTitle">Сенің рөлің</h2></div><div class="round-number" id="roundNumber">ROUND 01</div></div>
+ <div class="panel role-panel"><div id="roleSymbol" class="role-symbol">◉</div><div id="roleLabel" class="kicker">ҚҰПИЯ РӨЛ</div><h2 id="roleMain">Сөзді көр.</h2><p id="roleDescription">Экранды тек өзің қара.</p><div id="secretWord" class="secret-word">••••••••</div><div id="spyHint" class="hint-box hidden"></div><button id="revealBtn" class="btn primary full">ҚҰПИЯ СӨЗДІ КӨРСЕТУ</button><button id="hideWordBtn" class="btn secondary full hidden">СӨЗДІ ЖАСЫРУ</button></div>
+ <div id="guessPanel" class="panel hidden"><div class="kicker">ШПИОННЫҢ БОЛЖАМЫ</div><h3>Жасырылған сөз қандай?</h3><p class="muted">Талқылау біткен соң ғана сөзді енгіз.</p><input id="guessInput" placeholder="Сөзді жаз..." maxlength="60"><button id="guessBtn" class="btn primary full">ЖАУАПТЫ ТЕКСЕРУ ↗</button></div>
+ <div id="roundWaiting" class="panel hidden"><div class="big-icon">⌛</div><h3>Жауап күтілуде</h3><p class="muted">Шпион өз болжамын енгізгенше күте тұр.</p></div>
+ <div class="panel score-panel"><div class="panel-head"><div><strong>🏆 Ұпай кестесі</strong><small>Нәтижелер бәріне көрінеді</small></div></div><div id="roundScores" class="scores"></div></div>
+</section>
+<section id="result" class="screen">
+ <div class="result-hero"><div class="trophy">✦</div><div class="kicker">РАУНД АЯҚТАЛДЫ</div><h1 id="resultTitle">Жеңімпаз!</h1><p id="resultText"></p></div>
+ <div class="panel"><div class="panel-head"><div><strong>Раунд нәтижесі</strong><small id="resultWord"></small></div></div><div id="resultScores" class="scores"></div><button id="backLobby" class="btn primary full">КЕЛЕСІ РАУНД ↗</button></div>
+</section>
+<div id="toast" class="toast" role="status"></div>
+</main>
+<footer class="page-foot">SPYROOM · Достармен ойна, күдікті тап.</footer>
+<!-- Firebase SDK (compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="categories.js"></script><script src="app.js"></script>
+</body></html>
